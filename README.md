@@ -14,9 +14,9 @@ Release: 5.1.2.00.09
 
 ![alt text](https://raw.githubusercontent.com/akampakos/logis/master/example_images/single_product.PNG)
 
-![alt text](https://raw.githubusercontent.com/akampakos/logis/master/example_images/orders.PNG)
+![alt text](https://raw.githubusercontent.com/akampakos/logis/master/example_images/orders.png)
 
-![alt text](https://raw.githubusercontent.com/akampakos/logis/master/example_images/order_detail.PNG)
+![alt text](https://raw.githubusercontent.com/akampakos/logis/master/example_images/order_detail.png)
 
-![alt text](https://raw.githubusercontent.com/akampakos/logis/master/example_images/invoice.PNG)
+![alt text](https://raw.githubusercontent.com/akampakos/logis/master/example_images/invoice.png)
 
