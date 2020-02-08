@@ -1,0 +1,49 @@
+CREATE TABLE PRODUCTS 
+(
+  PRO_ID NUMBER(18) NOT NULL 
+, PRO_NAME VARCHAR2(300) 
+, PRO_DESC VARCHAR2(2000) 
+, PRO_CATEGORY NUMBER(4,0) 
+, PRO_AVAIL VARCHAR2(1) 
+, PRO_PRICE NUMBER(8,2) 
+, PRO_IMAGE BLOB 
+, PRO_MIMETYPE VARCHAR2(255) 
+, PRO_FILENAME VARCHAR2(400) 
+, PRO_IMG_UPDATE TIMESTAMP (6) WITH LOCAL TIME ZONE
+, PRO_TAGS VARCHAR2(4000) 
+, CONSTRAINT PRODUCTS_PK PRIMARY KEY 
+  (
+    PRO_ID 
+  )
+  ENABLE 
+);
+
+ALTER TABLE PRODUCTS
+ADD CONSTRAINT PRODUCTS_UK UNIQUE 
+(
+  PRO_NAME 
+)
+ENABLE;
+
+CREATE SEQUENCE PRODUCTS_SEQ START WITH 1 MINVALUE 1;
+
+ALTER SEQUENCE PRODUCTS_SEQ NOCACHE;
+
+----------------------------------------------------------------
+
+ CREATE OR REPLACE TRIGGER PRODUCTS_BIU
+  before insert or update ON PRODUCTS FOR EACH ROW
+DECLARE
+  prod_id number;
+BEGIN
+  if inserting then  
+    if :new.pro_id is null then
+      select PRODUCTS_seq.nextval
+        into prod_id
+        from dual;
+      :new.pro_id := prod_id;
+    end if;
+  end if;
+END;
+
+

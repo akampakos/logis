@@ -1,0 +1,42 @@
+CREATE TABLE COMPANIES 
+(
+  CO_ID NUMBER(18) NOT NULL 
+, CO_NAME VARCHAR2(50) 
+, CO_ADDRESS VARCHAR2(2000)
+, CO_ZIPCODE VARCHAR2(20)
+, CO_PHONE VARCHAR2(30)
+, CO_CITY VARCHAR2(20)
+, CO_AFM VARCHAR2(30)
+, CONSTRAINT COMPANIES_PK PRIMARY KEY 
+  (
+    CO_ID 
+  )
+  ENABLE 
+);
+
+ALTER TABLE CUSTOMERS
+ADD CONSTRAINT CUSTOMERS_COMPANY_FK FOREIGN KEY
+(
+  CUST_COID 
+)
+REFERENCES COMPANIES
+(
+  CO_ID 
+)
+ENABLE;
+
+CREATE SEQUENCE COMPANIES_SEQ INCREMENT BY 1 START WITH 1 NOCACHE;
+
+
+----------------------------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER COMPANIES_TRIG_SEQ
+   before insert on COMPANIES
+   for each row 
+begin  
+   if inserting then 
+      if :NEW."CO_ID" is null then 
+         select COMPANIES_SEQ.nextval into :NEW."CO_ID" from dual; 
+      end if; 
+   end if; 
+end;
